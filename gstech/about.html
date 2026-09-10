@@ -1,231 +1,347 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>GS TECHNOLOGY</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/carousel.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all" />
-<script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/owl.carousel.js" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-
-      var owl = $("#owl-demo");
-
-      owl.owlCarousel({
-
-      items :4, //10 items above 1000px browser width
-      itemsDesktop : [1000,4], //5 items between 1000px and 901px
-      itemsDesktopSmall : [900,3], // 3 items betweem 900px and 601px
-      itemsTablet: [600,2], //2 items between 600 and 0;
-      itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
-      
-      });
-
-      // Custom Navigation Events
-      $(".next").click(function(){
-        owl.trigger('owl.next');
-      })
-      $(".prev").click(function(){
-        owl.trigger('owl.prev');
-      })
-
-    });
-    </script>
-  <script type="text/javascript">
-  // Login Form
-	$(function() {
-	    var button = $('#loginButton');
-	    var box = $('#loginBox');
-	    var form = $('#loginForm');
-	    button.removeAttr('href');
-	    button.mouseup(function(login) {
-	        box.toggle();
-	        button.toggleClass('active');
-	    });
-	    form.mouseup(function() { 
-	        return false;
-	    });
-	    $(this).mouseup(function(login) {
-	        if(!($(login.target).parent('#loginButton').length > 0)) {
-	            button.removeClass('active');
-	            box.hide();
-	        }
-	    });
-	});
-	</script>
-	<style>
-		h2{
-			font-size: 40px;
-			font-style:bold;
-			margin-top: 15px;
-			color:white;
-			font-family:Georgia, 'Times New Roman', Times, serif;
-		}
-		#abtc
-		{
-			font-size: 20px;
-			background-image: url("images/bg2");
-
-		}
-body{
-	background-image: url("images/bgc.gif");
-}
-.warp{
-	opacity: 0.5px;
-}
-.main{
-	margin-top: 30px;
-}
-.lgimg{
-	height: 70px;
-			width: 45px;
-			margin-top: 17px;
-			margin-right: 10px;
-}
-
-#hd{
-		width: 100%;
-		height: 100%;
-		padding-top: 20px;
-	}
-	#foot{
-			background:#F28858;
-		}
-		.subscribe{
-			padding-left:350px;
-		}
-		#sa{
-			border-radius: 20px;
-		}
-		#ds{
-			border-radius: 20px;
-			background: white;			
-		}
-	
-		</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | GS Technology India Pvt Ltd</title>
+  <meta name="description" content="Learn about GS Technology India Pvt Ltd, founded in 2013 at Coimbatore, Tamil Nadu. Leading manufacturers of high-pressure RO membrane housing spares and precision engineering." />
+  
+  <!-- Modern Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.css" />
+  <link rel="stylesheet" href="css/modern.css" />
 </head>
 <body>
-   <!-- Start Header -->
-      
-             <div class="header-logo-nav" id="gs">
-             	  <div class="navbar navbar-inverse navbar-static-top nav-bg" role="navigation">
-				      <div class="container">
-				        <div class="navbar-header">
-				          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				            <span class="sr-only">Toggle navigation</span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-				            <span class="icon-bar"></span>
-				          </button>
-				         <div class="logo"> <a class="navbar-brand" href="index.html"><img src="images/lg.png" alt="" class="lgimg" /></a></div>
-				          <div class="clear"></div>
-				        </div>
-				        <div class="collapse navbar-collapse"><h2 id="hd">Gs Technology India Pvt Ltd</h2>
-				          <ul class=" menu nav navbar-nav">
-				            <li ><a href="index.html">Home</a></li>
-   					 <li class="active"><a href="about.html">About us</a></li>
-					<li><a href="spares.html">Spares</a></li>
-				
-				
-				            <li><a href="contact.html">Contact Us</a></li>
 
-				          </ul>
-				        </div><!--/.nav-collapse -->
-				      </div>
-				    </div>
-		         <div class="clear"></div>
-	        </div>
-           </div>
-   <!-- End Header -->
-   
-   <!-- Start Main Content -->
-	 <div class="main">	 
-	 	 <div class="wrap">
-	 	 	 <div class="col-lg-12">
-	 	  <div class="about-desc">
-	 		 <h2>About Us</h2>
-	 	    <p id="abtc">	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GS Tech was founded in 2013 at Coimbatore. We are a team of experienced and well qualified engineers having excellent track record in the field of design and manufacture of all type of Rettining & Thrust Cone,RO membrane housing end caps to Manufacturer rings, we are able to satisfy the needs of a wide range of clients.
-				 </p>
-					</div>
-					 
-			</div> 	  
-			
-
-		 
-		 <div class="testimonials-news" id="sa">
-	      <div class="news partners" id="ds">
-	      	<div class="wrap">
-	      	  <div class="row">
-		        </div><!-- /.col-lg-4 -->
-		      </div>
-	      	 </div>
-	      </div>
-	 </div>
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-left">
+          <div class="top-bar-item">
+            <i class="fa fa-map-marker"></i>
+            <span>SIDCO Post, Coimbatore - 641 021, Tamil Nadu</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="fa fa-envelope"></i>
+            <a href="mailto:gstech81@gmail.com">gstech81@gmail.com</a>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <div class="top-bar-item">
+            <i class="fa fa-phone"></i>
+            <a href="tel:+919994211913">+91 99942 11913</a>
+          </div>
+          <div class="top-bar-item">
+            <i class="fa fa-whatsapp"></i>
+            <a href="https://wa.me/919994211913" target="_blank">WhatsApp Support</a>
+          </div>
+        </div>
+      </div>
     </div>
-   <!-- End Main Content -->
-	 
-  <!-- Start Footer -->
-  <span class="footer-arrow"></span>
-       <div class="footer" id="foot">	  
-       	 <div class="wrap">	      
-		  <div class="row">
-			   <div class="col-lg-6">
-			   	<h2>About  Gs Technology</h2>
-			   	<p>Gs Technology India Pvt is a registered online spares booking website by the Our Manufacturing Democratic Team. Any issues should be contact Mr.A.GowriShanker,Coimbatore . </p>
-			    <ul class="links">
-			    	<li><a href="about.html">About</a> /</li>
-			    	<li><a href="#">Term of Services</a> </li>
-			    	
-			    </ul> 
-			   </div>
-			    <div class="col-lg-6">
-			  
-			     <div class="products-list">
-			     <ul>
-			     	
-			     </ul>
-			     <ul>	                         
-			   
-			     </ul>
-			     <div class="clear"></div>
-			    </div>
-			     <div class="subscribe">
-							<h2>G.S Technology</h2>
-							<p>Plot No. 19,Vallal Nagar,<br>
-								Pillayarpuram Sidco Post,<br>
-								Coimbatore-641 021.<br>
-								Email: gsteh81@gmail.com
-							</p>
-			    </div>
-			   </div>
-			  </div>
-			 </div>
-		   </div>
-			 <div class="footer-bottom">
-			 	<div class="wrap">
-			 	<div class="copy-right">
-			 		<p>GS Technology India Pvt Copyright &copy; 2019  all right reserved. </p>
-			 	</div>
-			 	<div class="social-icons">
-			 		<ul>
-			 			<li><a href="https://twitter.com/Shanker83983952" target="_blank"><i class="fa fa-twitter"></i></a></li>
-			 			<li><a href="https://www.facebook.com/Gstechnology-829224147431097/?modal=admin_todo_tour" target="_blank"><i class="fa fa-facebook"></i></a></li>
-			 			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-			 		
-			 		</ul>
-			 	</div>
-			 	<div class="clear"></div>
-			 </div>
-	       </div>
-  <!-- End Footer -->
-  </body>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="brand-logo">
+          <img src="images/lg.png" alt="GS Technology Logo" />
+          <div class="brand-text">
+            <h1>GS Technology</h1>
+            <p>India Pvt Ltd &bull; Est. 2013</p>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About Us</a></li>
+          <li><a href="spares.html">Spares Catalog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a href="https://wa.me/919994211913?text=Hi%20GS%20Technology,%20I%20would%20like%20to%20learn%20more%20about%20your%20products." target="_blank" class="btn btn-whatsapp btn-sm">
+            <i class="fa fa-whatsapp"></i> Quick Quote
+          </a>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="brand-logo">
+        <img src="images/lg.png" alt="Logo" style="height:36px;" />
+        <span style="font-weight:700; color:#fff;">GS Technology</span>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="mobile-drawer-links">
+      <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="about.html" class="active"><i class="fa fa-info-circle"></i> About Us</a></li>
+      <li><a href="spares.html"><i class="fa fa-cogs"></i> Spares Catalog</a></li>
+      <li><a href="contact.html"><i class="fa fa-envelope"></i> Contact Us</a></li>
+    </ul>
+    <div style="margin-top:auto; display:flex; flex-direction:column; gap:12px;">
+      <a href="tel:+919994211913" class="btn btn-secondary btn-sm"><i class="fa fa-phone"></i> Call +91 9994211913</a>
+      <a href="https://wa.me/919994211913" target="_blank" class="btn btn-whatsapp btn-sm"><i class="fa fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+  </aside>
+
+  <!-- Hero Header -->
+  <section class="section-padding" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 15, 29, 0.95) 100%); border-bottom: 1px solid var(--border-color); text-align: center;">
+    <div class="container">
+      <span class="badge badge-emerald"><i class="fa fa-building"></i> Established 2013 &bull; Coimbatore</span>
+      <h1 style="font-size: 2.8rem; margin: 16px 0 14px;">About GS Technology India Pvt Ltd</h1>
+      <p style="max-width: 760px; margin: 0 auto; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7;">
+        A premier manufacturing company founded by experienced mechanical engineers, dedicated to producing world-class reverse osmosis membrane pressure vessel closures, retaining rings, and custom spares.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story & Heritage Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:50px; align-items:center;">
+        <div>
+          <span class="badge"><i class="fa fa-history"></i> Our Story</span>
+          <h2 style="font-size: 2.2rem; margin: 14px 0 18px;">Engineering Precision Since 2013</h2>
+          <p style="margin-bottom: 16px; font-size: 1rem; line-height: 1.7;">
+            GS Tech was founded in 2013 at Coimbatore, Tamil Nadu—the engineering hub of South India. We began with a dedicated team of experienced and qualified engineers with an exceptional track record in designing and manufacturing precision parts for fluid dynamics.
+          </p>
+          <p style="margin-bottom: 16px; font-size: 1rem; line-height: 1.7;">
+            Over the past decade, we have established specialized manufacturing for all types of <strong style="color:var(--accent);">RO membrane housing end caps (4" &amp; 8")</strong>, <strong style="color:var(--accent);">marine-grade SS 304/316 retaining rings</strong>, <strong style="color:var(--accent);">thrust cones</strong>, and <strong style="color:var(--accent);">adaptors</strong>.
+          </p>
+          <p style="font-size: 1rem; line-height: 1.7;">
+            By maintaining strict hydro-testing protocols on every single batch, we ensure that plant operators, OEM system integrators, and water treatment facilities avoid costly plant downtimes and membrane failures.
+          </p>
+        </div>
+
+        <div>
+          <div class="hero-card-preview">
+            <img src="images/bg.jpg" alt="GS Technology Workshop and Manufacturing" style="height:360px;" />
+            <div class="floating-badge">
+              <i class="fa fa-certificate"></i>
+              <div>
+                <h4>Certified Quality</h4>
+                <p>100% In-House Hydrostatic Testing</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission, Vision & Values -->
+  <section class="section-padding" style="background: rgba(15, 23, 42, 0.5); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-emerald"><i class="fa fa-compass"></i> Guiding Principles</span>
+        <h2>Mission, Vision &amp; Quality Commitment</h2>
+        <p>Built upon the foundations of reliability, precision engineering, and responsive customer partnership.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-bullseye"></i></div>
+          <h3>Our Mission</h3>
+          <p>To manufacture defect-free, hydro-tested RO membrane spares that empower industrial and municipal water plants with leak-proof longevity, safe high-pressure operation, and maximum cost efficiency.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To be India's most trusted indigenous engineering partner for reverse osmosis pressure vessel hardware, advancing sustainability through superior fluid containment technologies.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-check-square-o"></i></div>
+          <h3>Quality Assurance</h3>
+          <p>Each component undergoes rigorous dimension checking, raw material spectrometer certification, and hydrostatic pressure testing up to 1200 PSI prior to customer shipment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Served -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge"><i class="fa fa-industry"></i> Real-World Impact</span>
+        <h2>Industries Empowered By Our Spares</h2>
+        <p>Our reverse osmosis pressure vessel components operate reliably across critical national and international sectors.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-tint"></i></div>
+          <h3>Desalination Plants</h3>
+          <p>High salinity seawater RO facilities requiring corrosion-proof SS 316 retaining rings and high-strength 1200 PSI aluminium/FRP end caps.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-recycle"></i></div>
+          <h3>Textile &amp; ETP / STP</h3>
+          <p>Zero Liquid Discharge (ZLD) systems and effluent treatment units handling chemically aggressive recovery water.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-medkit"></i></div>
+          <h3>Pharma &amp; Hospital Dialysis</h3>
+          <p>Ultra-pure water generation units demanding sanitary sealing, non-leaching ABS end caps, and high-purity fluid conduits.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa fa-coffee"></i></div>
+          <h3>Food &amp; Beverage Plants</h3>
+          <p>Breweries, juice manufacturers, and bottled water enterprises requiring non-stop uptime and rapid spare part availability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Leadership -->
+  <section class="section-padding" style="background: rgba(15, 23, 42, 0.6); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-emerald"><i class="fa fa-users"></i> Leadership Team</span>
+        <h2>Meet Our Key Executives</h2>
+        <p>Leadership guided by deep technical expertise, ethical manufacturing, and customer commitment.</p>
+      </div>
+
+      <div class="leadership-grid">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <img src="images/gm.jpg" alt="Mr. A. Gowri Shankar - CEO" />
+          </div>
+          <h3>A. Gowri Shankar</h3>
+          <div class="profile-role">Chief Executive Officer (CEO)</div>
+          <p class="profile-bio">
+            Spearheading technical design, tooling innovation, and quality control systems. Under his direction, GS Technology has scaled from a regional supplier to a nationwide provider of certified RO pressure vessel spares.
+          </p>
+          <div style="margin-top:16px;">
+            <a href="tel:+919994211913" class="btn btn-secondary btn-sm"><i class="fa fa-phone"></i> Direct: +91 99942 11913</a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-avatar" style="background:linear-gradient(135deg, #1e293b, #0f172a); display:flex; align-items:center; justify-content:center;">
+            <i class="fa fa-user" style="font-size:3.5rem; color:var(--accent);"></i>
+          </div>
+          <h3>N. Ayyasamy</h3>
+          <div class="profile-role">Founder</div>
+          <p class="profile-bio">
+            Co-founded the organization with the foundational objective of making high-precision industrial reverse osmosis components readily accessible, durable, and economically priced for Indian industries.
+          </p>
+          <div style="margin-top:16px;">
+            <a href="contact.html" class="btn btn-secondary btn-sm"><i class="fa fa-envelope"></i> Contact Management</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(37, 99, 235, 0.2)); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 50px 40px; text-align: center; box-shadow: var(--shadow-lg);">
+        <h2 style="font-size: 2.2rem; margin-bottom: 16px;">Partner With GS Technology Today</h2>
+        <p style="max-width: 650px; margin: 0 auto 30px; font-size: 1.05rem;">
+          Looking for trusted OEM spares, bulk contractor supplies, or customized membrane end caps? Get in touch with our Coimbatore engineering desk.
+        </p>
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+          <a href="https://wa.me/919994211913" target="_blank" class="btn btn-whatsapp">
+            <i class="fa fa-whatsapp"></i> Chat on WhatsApp (+91 99942 11913)
+          </a>
+          <a href="spares.html" class="btn btn-primary">
+            <i class="fa fa-cogs"></i> View Products Catalog
+          </a>
+          <a href="contact.html" class="btn btn-secondary">
+            <i class="fa fa-envelope"></i> Contact Office
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>GS Technology India Pvt Ltd</h2>
+          <p>
+            Specialized manufacturer of reverse osmosis membrane housing spares, retaining rings, thrust cones, and industrial water treatment hardware since 2013 in Coimbatore.
+          </p>
+          <div class="social-links">
+            <a href="https://twitter.com/Shanker83983952" target="_blank" class="social-btn" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.facebook.com/Gstechnology-829224147431097/" target="_blank" class="social-btn" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="mailto:gstech81@gmail.com" class="social-btn" aria-label="Email"><i class="fa fa-envelope"></i></a>
+            <a href="https://wa.me/919994211913" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fa fa-angle-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fa fa-angle-right"></i> About Us</a></li>
+            <li><a href="spares.html"><i class="fa fa-angle-right"></i> Spares Catalog</a></li>
+            <li><a href="contact.html"><i class="fa fa-angle-right"></i> Contact &amp; Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul class="footer-links">
+            <li><a href="spares.html"><i class="fa fa-angle-right"></i> RO End Caps 4" &amp; 8"</a></li>
+            <li><a href="spares.html"><i class="fa fa-angle-right"></i> SS Retaining Rings</a></li>
+            <li><a href="spares.html"><i class="fa fa-angle-right"></i> Thrust Cones</a></li>
+            <li><a href="spares.html"><i class="fa fa-angle-right"></i> Adaptors &amp; O-Rings</a></li>
+            <li><a href="spares.html"><i class="fa fa-angle-right"></i> 150-1200 PSI Housings</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Works &amp; Office</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <i class="fa fa-map-marker"></i>
+              <span>Plot No. 19, Vallal Nagar, Pillayarpuram, SIDCO Post, Coimbatore - 641 021, Tamil Nadu, India</span>
+            </li>
+            <li>
+              <i class="fa fa-phone"></i>
+              <span>+91 99942 11913 / +91 82200 82276</span>
+            </li>
+            <li>
+              <i class="fa fa-envelope"></i>
+              <span>gstech81@gmail.com</span>
+            </li>
+            <li>
+              <i class="fa fa-clock-o"></i>
+              <span>Mon - Sat: 9:00 AM - 7:00 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 GS Technology India Pvt Ltd. All rights reserved.</p>
+        <p>Designed for High Reliability &bull; Precision Water Treatment Solutions</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="js/main.js"></script>
+</body>
 </html>
