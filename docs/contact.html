@@ -258,7 +258,7 @@
                 <i class="fa fa-map-pin"></i> Pinpoint Map
               </button>
               <button id="btnShowGoogleMap" class="btn-sm" style="background: transparent; color: var(--text-secondary); border: none; border-radius: var(--radius-full); padding: 6px 14px; font-size: 0.82rem; cursor: pointer; font-weight: 600;">
-                <i class="fa fa-globe"></i> Google View
+                <i class="fa fa-globe"></i> Satellite View
               </button>
             </div>
             <a href="https://maps.app.goo.gl/Ay8ioeAxADMseDk2A" target="_blank" class="btn btn-primary btn-sm">
@@ -271,21 +271,8 @@
         </div>
 
         <!-- Interactive Map View with Guaranteed Red Pin Marker -->
-        <div id="pinMapContainer" style="position: relative; width: 100%; height: 440px;">
+        <div id="pinMapContainer" style="position: relative; width: 100%; height: 460px;">
           <div id="factoryMap" style="width: 100%; height: 100%; z-index: 1;"></div>
-        </div>
-
-        <!-- Google Maps Iframe View -->
-        <div id="googleMapContainer" style="position: relative; width: 100%; height: 440px; display: none;">
-          <iframe 
-            title="GS Technology Exact Factory Location Marker"
-            src="https://www.google.com/maps?q=10.9394101,76.9662962&hl=en&z=17&output=embed" 
-            width="100%" 
-            height="100%" 
-            style="border:0; display:block;" 
-            allowfullscreen="" 
-            loading="lazy">
-          </iframe>
         </div>
       </div>
     </div>
@@ -359,6 +346,16 @@
     </div>
   </footer>
 
+  <!-- Floating WhatsApp Quick Connect Button -->
+  <a href="https://wa.me/919994211913?text=Hi%20GS%20Technology,%20I%20have%20an%20inquiry%20about%20RO%20spares." 
+     target="_blank" 
+     class="floating-whatsapp" 
+     aria-label="Chat with GS Technology on WhatsApp" 
+     title="Chat on WhatsApp (+91 99942 11913)">
+    <i class="fa fa-whatsapp"></i>
+    <span class="floating-whatsapp-tooltip">Chat on WhatsApp</span>
+  </a>
+
   <!-- Leaflet Map Script for Precision Pin Marker -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
@@ -368,12 +365,40 @@
       const factoryLng = 76.9662962;
 
       // Initialize Leaflet Map
-      const map = L.map('factoryMap', { scrollWheelZoom: false }).setView([factoryLat, factoryLng], 17);
+      const map = L.map('factoryMap', { 
+        scrollWheelZoom: false,
+        zoomControl: true
+      }).setView([factoryLat, factoryLng], 17);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      // 1. Street Pinpoint Layer: OSM HOT (Free, high-performance, watermark-free)
+      const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
+        subdomains: ['a', 'b', 'c'],
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors, <a href="https://www.hotosm.org/" target="_blank">HOT</a>'
+      });
+
+      // Automatic fallback to Esri World Street Map if any tile errors occur
+      streetLayer.on('tileerror', function(e) {
+        if (e.tile && e.coords) {
+          e.tile.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${e.coords.z}/${e.coords.y}/${e.coords.x}`;
+        }
+      });
+
+      // 2. High-Resolution Satellite Imagery Layer (Esri World Imagery)
+      const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics'
+      });
+
+      // 2b. Overlay for Satellite Road & Place Labels
+      const satelliteLabels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19
+      });
+
+      const satelliteGroup = L.layerGroup([satelliteLayer, satelliteLabels]);
+
+      // Add default street view
+      streetLayer.addTo(map);
 
       // Custom Red Pin Marker with Pulsing Beacon
       const redPinIcon = L.divIcon({
@@ -413,30 +438,37 @@
         </div>
       `).openPopup();
 
-      // Toggle views between Leaflet Pin Map & Google Maps
+      // Toggle views between Pinpoint Map (Streets) & Satellite Imagery
       const btnPin = document.getElementById('btnShowPinMap');
-      const btnGoogle = document.getElementById('btnShowGoogleMap');
-      const pinContainer = document.getElementById('pinMapContainer');
-      const googleContainer = document.getElementById('googleMapContainer');
+      const btnSatellite = document.getElementById('btnShowGoogleMap');
 
-      if (btnPin && btnGoogle) {
+      if (btnPin && btnSatellite) {
         btnPin.addEventListener('click', () => {
-          pinContainer.style.display = 'block';
-          googleContainer.style.display = 'none';
+          if (map.hasLayer(satelliteGroup)) {
+            map.removeLayer(satelliteGroup);
+          }
+          if (!map.hasLayer(streetLayer)) {
+            streetLayer.addTo(map);
+          }
           btnPin.style.background = 'var(--primary)';
           btnPin.style.color = '#ffffff';
-          btnGoogle.style.background = 'transparent';
-          btnGoogle.style.color = 'var(--text-secondary)';
+          btnSatellite.style.background = 'transparent';
+          btnSatellite.style.color = 'var(--text-secondary)';
           map.invalidateSize();
         });
 
-        btnGoogle.addEventListener('click', () => {
-          pinContainer.style.display = 'none';
-          googleContainer.style.display = 'block';
-          btnGoogle.style.background = 'var(--primary)';
-          btnGoogle.style.color = '#ffffff';
+        btnSatellite.addEventListener('click', () => {
+          if (map.hasLayer(streetLayer)) {
+            map.removeLayer(streetLayer);
+          }
+          if (!map.hasLayer(satelliteGroup)) {
+            satelliteGroup.addTo(map);
+          }
+          btnSatellite.style.background = 'var(--primary)';
+          btnSatellite.style.color = '#ffffff';
           btnPin.style.background = 'transparent';
           btnPin.style.color = 'var(--text-secondary)';
+          map.invalidateSize();
         });
       }
     });
