@@ -14,15 +14,15 @@
   --bg-card-hover: rgba(51, 65, 85, 0.8);
   --border-color: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(14, 165, 233, 0.3);
-  
+
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  
+
   --primary: #0ea5e9;
   --primary-hover: #0284c7;
   --primary-glow: rgba(14, 165, 233, 0.25);
-  
+
   --accent: #38bdf8;
   --accent-cyan: #06b6d4;
   --accent-blue: #2563eb;
@@ -44,7 +44,9 @@
 }
 
 /* Base Reset & Box Sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -62,7 +64,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
-  background-image: 
+  background-image:
     radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
     radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.8) 0px, transparent 100%);
@@ -70,7 +72,12 @@ body {
 }
 
 /* Typography Helpers */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-primary);
   font-weight: 700;
   line-height: 1.25;
@@ -225,7 +232,8 @@ img {
   gap: 12px;
 }
 
-.top-bar-left, .top-bar-right {
+.top-bar-left,
+.top-bar-right {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -368,9 +376,11 @@ img {
   .nav-links {
     display: none;
   }
+
   .nav-cta .btn {
     display: none;
   }
+
   .mobile-toggle {
     display: flex;
   }
@@ -598,17 +608,52 @@ img {
   color: var(--text-secondary);
 }
 
+.hero-card-wa-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-decoration: none;
+  transition: var(--transition);
+  z-index: 5;
+}
+
+.hero-card-wa-btn:hover {
+  background: linear-gradient(135deg, #2ae06f 0%, #16a085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+  color: #ffffff !important;
+}
+
+.hero-card-wa-btn i {
+  font-size: 1.1rem;
+}
+
 @media (max-width: 992px) {
   .hero {
     padding: 60px 0;
   }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
   .hero-title {
     font-size: 2.5rem;
   }
+
   .hero-card-preview img {
     height: 300px;
   }
@@ -618,6 +663,7 @@ img {
   .hero-title {
     font-size: 2.1rem;
   }
+
   .hero-highlights {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1012,7 +1058,8 @@ img {
   margin-bottom: 4px;
 }
 
-.contact-card-text p, .contact-card-text a {
+.contact-card-text p,
+.contact-card-text a {
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.5;
@@ -1302,12 +1349,835 @@ textarea.form-control {
     transform: scale(0.8);
     opacity: 0.9;
   }
+
   70% {
     transform: scale(1.8);
     opacity: 0;
   }
+
   100% {
     transform: scale(0.8);
     opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   3D SCROLL SHOWCASE STYLES (Three.js + GSAP ScrollTrigger)
+   ========================================================================== */
+
+.scroll-3d-section {
+  position: relative;
+  height: 380vh;
+  background: radial-gradient(circle at 50% 20%, rgba(14, 165, 233, 0.12) 0%, rgba(10, 15, 29, 0.95) 70%, #0a0f1d 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  scroll-margin-top: 80px;
+}
+
+.scroll-3d-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Three.js Canvas Wrapper */
+.scroll-3d-canvas-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  /* Crucial: ensures native scroll is NEVER trapped */
+  transition: opacity 0.4s ease;
+}
+
+.scroll-3d-canvas-wrap.orbit-active {
+  pointer-events: auto;
+  /* Active only in Free Orbit mode */
+  cursor: grab;
+}
+
+.scroll-3d-canvas-wrap.orbit-active:active {
+  cursor: grabbing;
+}
+
+.scroll-3d-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Top Progress Line */
+.scroll-3d-progress-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 10;
+}
+
+.scroll-3d-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8, #10b981);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  transition: width 0.1s linear;
+}
+
+/* HUD Overlay Layer */
+.scroll-3d-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Let clicks pass through except on interactive children */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 40px;
+}
+
+/* Top Showcase Bar */
+.scroll-3d-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.scroll-3d-header {
+  max-width: 480px;
+}
+
+.scroll-3d-header h2 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-top: 8px;
+  line-height: 1.25;
+}
+
+.scroll-3d-header h2 span {
+  background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scroll-3d-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* Mode Controls Pill */
+.scroll-3d-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.mode-status-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mode-status-text::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulsePin 2s infinite;
+}
+
+.btn-mode-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-mode-toggle:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-mode-toggle.active {
+  background: #3b82f6;
+  border-color: #60a5fa;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.5);
+}
+
+.btn-mode-reset {
+  display: none;
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-mode-reset:hover {
+  background: rgba(239, 68, 68, 0.4);
+  color: #fff;
+}
+
+/* Center / Middle Content Area */
+.scroll-3d-middle {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Floating Narrative Cards (Positioned on the Left) */
+.scroll-3d-cards-container {
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  pointer-events: auto;
+}
+
+.scroll-3d-card {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-30px);
+  width: 100%;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(14, 165, 233, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.scroll-3d-card.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+  pointer-events: auto;
+}
+
+.card-stage-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.scroll-3d-card h3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.scroll-3d-card p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.scroll-3d-card-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-spec-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-spec-item span.lbl {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.card-spec-item span.val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.card-action-bar {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-wa-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 18px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.card-wa-btn:hover {
+  background: linear-gradient(135deg, #2ae06f 0%, #16a085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+  color: #ffffff !important;
+}
+
+.card-wa-btn i {
+  font-size: 1.15rem;
+}
+
+/* Bottom Navigation Pill Bar */
+.scroll-3d-bottombar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.scroll-3d-steps-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.step-nav-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.35);
+  transition: var(--transition);
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.step-nav-wa-btn:hover {
+  background: linear-gradient(135deg, #2ae06f 0%, #16a085 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.55);
+  color: #ffffff !important;
+}
+
+.step-nav-wa-btn i {
+  font-size: 1.05rem;
+}
+
+.step-nav-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-nav-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.step-nav-btn.active {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.5);
+}
+
+.step-nav-btn .num {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.scroll-hint-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scroll-hint-pill i {
+  color: var(--accent);
+  animation: bounceDown 1.5s infinite;
+}
+
+@keyframes bounceDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Fallback for devices without WebGL */
+.scroll-3d-section.no-webgl {
+  height: auto !important;
+  padding: 80px 0;
+}
+
+.scroll-3d-section.no-webgl .scroll-3d-sticky {
+  position: static;
+  height: auto;
+}
+
+.scroll-3d-section.no-webgl .scroll-3d-canvas-wrap {
+  display: none;
+}
+
+.scroll-3d-section.no-webgl .scroll-3d-card {
+  position: static;
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  margin-bottom: 24px;
+}
+
+/* Responsive Breakpoints for 3D Showcase */
+@media (max-width: 992px) {
+  .scroll-3d-overlay {
+    padding: 20px 24px;
+  }
+
+  .scroll-3d-header h2 {
+    font-size: 1.45rem;
+  }
+
+  .scroll-3d-cards-container {
+    max-width: 380px;
+  }
+
+  .scroll-3d-card {
+    padding: 20px;
+  }
+
+  .scroll-3d-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .step-nav-btn {
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-3d-section {
+    height: 320vh;
+  }
+
+  .scroll-3d-overlay {
+    padding: 16px;
+  }
+
+  .scroll-3d-topbar {
+    gap: 10px;
+  }
+
+  .scroll-3d-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .scroll-3d-header p {
+    display: none;
+    /* Hide subtitle on small mobile to maximize 3D visibility */
+  }
+
+  .scroll-3d-middle {
+    align-items: flex-end;
+    /* Push card to bottom on mobile so 3D model is visible above */
+    padding-bottom: 8px;
+  }
+
+  .scroll-3d-cards-container {
+    max-width: 100%;
+  }
+
+  .scroll-3d-card {
+    top: auto;
+    bottom: 0;
+    transform: translateY(20px);
+    padding: 16px;
+  }
+
+  .scroll-3d-card.active {
+    transform: translateY(0);
+  }
+
+  .scroll-3d-card p {
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+  }
+
+  .scroll-3d-card-specs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding-top: 10px;
+  }
+
+  .scroll-3d-bottombar {
+    justify-content: center;
+  }
+
+  .scroll-hint-pill {
+    display: none;
+  }
+
+  .step-nav-btn span.label-text {
+    display: none;
+    /* Icon/number only on narrow mobile */
+  }
+}
+
+/* ==========================================================================
+   AUTHENTIC 2.JPG CAD LAYERED ASSEMBLY STYLES
+   ========================================================================== */
+
+.cad-assembly-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.cad-assembly-stage.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cad-assembly-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1350px;
+  aspect-ratio: 16 / 9;
+  max-height: 82vh;
+  margin-left: 140px;
+  /* Shift right to leave room for left narrative card */
+}
+
+.cad-part {
+  position: absolute;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.65));
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Base Coordinates matching 2.JPG */
+.part-vessel {
+  left: 73.96%;
+  top: 8.33%;
+  width: 26.04%;
+  z-index: 2;
+}
+
+.part-collar {
+  left: 59.38%;
+  top: 22.22%;
+  width: 17.19%;
+  z-index: 3;
+}
+
+.part-oring {
+  left: 56.25%;
+  top: 25.93%;
+  width: 9.38%;
+  z-index: 4;
+}
+
+.part-endcap {
+  left: 36.98%;
+  top: 28.70%;
+  width: 22.40%;
+  z-index: 5;
+}
+
+.part-splitring {
+  left: 27.34%;
+  top: 37.96%;
+  width: 10.68%;
+  z-index: 6;
+}
+
+.part-beveledring {
+  left: 17.19%;
+  top: 37.96%;
+  width: 11.98%;
+  z-index: 7;
+}
+
+.part-screws {
+  left: 7.29%;
+  top: 44.44%;
+  width: 10.42%;
+  z-index: 8;
+}
+
+/* Full Front Face Inset (Appears at Stage 01 when assembled) */
+.cad-front-inset {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(14, 165, 233, 0.25);
+  z-index: 10;
+  transition: all 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cad-front-inset.hide {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+}
+
+.front-inset-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.front-face-graphic {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front-outer-rim {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  border: 4px solid #0284c7;
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4), 0 4px 15px rgba(2, 132, 199, 0.4);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front-screws-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.front-screw {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #334155;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.front-screw.s1 {
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.front-screw.s2 {
+  bottom: 16px;
+  left: 16px;
+}
+
+.front-screw.s3 {
+  bottom: 16px;
+  right: 16px;
+}
+
+.front-face-disc {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8fafc 40%, #cbd5e1 100%);
+  border: 2px solid #64748b;
+  position: relative;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.front-brand-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: #0284c7;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.front-pipe-projection {
+  position: absolute;
+  left: 16px;
+  top: 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #0f172a 40%, #334155 70%, #94a3b8 100%);
+  border: 2px solid #cbd5e1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.front-hex-plug {
+  position: absolute;
+  right: 24px;
+  top: 36px;
+  width: 16px;
+  height: 16px;
+  background: #475569;
+  border: 1px solid #94a3b8;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.front-caption {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 992px) {
+  .cad-assembly-canvas {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .cad-front-inset {
+    right: 3%;
+    bottom: 3%;
+    padding: 10px;
+  }
+
+  .front-face-graphic {
+    width: 85px;
+    height: 85px;
+  }
+
+  .front-outer-rim {
+    width: 80px;
+    height: 80px;
+  }
+
+  .front-face-disc {
+    width: 58px;
+    height: 58px;
   }
 }

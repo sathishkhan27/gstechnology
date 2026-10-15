@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWhatsAppQuote();
   initContactForm();
   initMetricsCounter();
+  initSmoothNavigation();
 });
 
 /* Mobile Menu & Drawer */
@@ -199,3 +200,35 @@ function initMetricsCounter() {
   const statsSection = document.querySelector('.hero-highlights, .stats-section');
   if (statsSection) observer.observe(statsSection);
 }
+
+/* Smooth In-Page Navigation */
+function initSmoothNavigation() {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#' && targetId.startsWith('#')) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const navOffset = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          // Update active link styling
+          document.querySelectorAll('.nav-links a, .mobile-drawer-links a').forEach(a => {
+            if (a.getAttribute('href') !== targetId) {
+              a.classList.remove('active');
+            }
+          });
+          this.classList.add('active');
+        }
+      }
+    });
+  });
+}
+
